@@ -20,6 +20,11 @@ public class ClienteService {
         return cliente;
     }
 
+    public void deletar (Cliente cliente){
+        clienteRepository.delete(cliente);
+    }
+
+
     public List <Cliente> listarCliente(){
         return clienteRepository.findAll();
     }

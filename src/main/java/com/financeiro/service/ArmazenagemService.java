@@ -20,6 +20,11 @@ public class ArmazenagemService {
         return armazenagem;
     }
 
+    public void delete (Armazenagem armazenagem){
+        armazenagemRepository.delete(armazenagem);
+
+    }
+
     public List<Armazenagem> listarArmazem(){
         return armazenagemRepository.findAll();
     }

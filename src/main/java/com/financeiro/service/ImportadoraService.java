@@ -20,6 +20,10 @@ public class ImportadoraService {
         return importadora;
     }
 
+    public void delete (Importadora importadora){
+        importadoraRepository.delete(importadora);
+    }
+
     public List<Importadora> listarImportadora(){
         return importadoraRepository.findAll();
 
