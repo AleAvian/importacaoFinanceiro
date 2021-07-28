@@ -6,6 +6,7 @@ import com.financeiro.repository.IProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,8 +20,12 @@ public class ProcessoService {
         return processo;
     }
 
-    public void deletar(Processo processo){
-        processoRepository.delete(processo);
+    public void deletar(Long id){
+        Optional<Processo> processo = processoRepository.findById(id);
+        if(processo.isPresent()){
+            processoRepository.delete(processo.get());
+        }
+
     }
 
     public List<Processo> listarProcesso(){

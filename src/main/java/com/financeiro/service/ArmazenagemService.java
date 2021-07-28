@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,9 +21,11 @@ public class ArmazenagemService {
         return armazenagem;
     }
 
-    public void delete (Armazenagem armazenagem){
-        armazenagemRepository.delete(armazenagem);
-
+    public void delete (Long id){
+        Optional<Armazenagem> armagenagem = armazenagemRepository.findById(id);
+        if(armagenagem.isPresent()){
+        armazenagemRepository.delete(armagenagem.get());
+        }
     }
 
     public List<Armazenagem> listarArmazem(){

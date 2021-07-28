@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaxaService {
@@ -21,9 +22,13 @@ public class TaxaService {
         return taxa;
     }
 
-    public void deletar (Taxa taxa){
-        taxaRepository.delete(taxa);
+    public void deletar (Long id){
+        Optional<Taxa> taxa = taxaRepository.findById(id);
+        if (taxa.isPresent()){
+            taxaRepository.delete(taxa.get());
+        }
     }
+
 
     public List<Taxa> listarTaxa(){
         return taxaRepository.findAll();

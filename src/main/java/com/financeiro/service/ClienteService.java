@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,8 +21,11 @@ public class ClienteService {
         return cliente;
     }
 
-    public void deletar (Cliente cliente){
-        clienteRepository.delete(cliente);
+    public void deletar (Long id){
+        Optional <Cliente> cliente = clienteRepository.findById(id);
+        if(cliente.isPresent()){
+            clienteRepository.delete(cliente.get());
+        }
     }
 
 

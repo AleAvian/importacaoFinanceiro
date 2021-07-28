@@ -6,6 +6,7 @@ import com.financeiro.repository.ITaxaProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,8 +21,11 @@ public class TaxaProcessoService {
         return taxaProcesso;
     }
 
-    public void deletar (TaxaProcesso taxaProcesso){
-        taxaProcessoRepository.delete(taxaProcesso);
+    public void deletar (Long id){
+        Optional<TaxaProcesso> taxaProcesso = taxaProcessoRepository.findById(id);
+        if (taxaProcesso.isPresent()){
+            taxaProcessoRepository.delete(taxaProcesso.get());
+        }
     }
 
     public List<TaxaProcesso> listarTaxaProcesso(){
